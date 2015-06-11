@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<% flash.each do |key, value| %>
+           <div class='alert alert-<%= key %>'>
+           	<%= value %>
+           </div>
+         		<% end %>
+			<%= form_for(:session, url: signin_path, method: :post) do |f| %>
+			<%= f.label :email %>
+			<%= f.text_field :email, class: 'form-control', autocomplete: "OFF" %>
+			<%= f.label :password %>
+			<%= link_to "(forgot password)", new_password_reset_path %>
+			<%= f.password_field :password, class: 'form-control', autocomplete: "OFF"  %>
+
+			<%= f.label :remember_me, class: "checkbox inline" do %>
+	        	<%= f.check_box :remember_me %>
+	        	<span>Remember me on this computer</span>
+      		<% end %>
+		<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+		<% end %>
+			<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+	</div>
+</div>
